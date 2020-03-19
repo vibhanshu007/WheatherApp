@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="cloudImage">Cloud Image</string>
+    <string name="quote">There is no such thing as bad weather, only different kinds of good weather.</string>
+</resources>
