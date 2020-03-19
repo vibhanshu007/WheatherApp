@@ -1,9 +1,10 @@
 package com.example.wheatherapp.base
 
-import androidx.lifecycle.LiveData
+import com.example.wheatherapp.model.DataResponse
+import retrofit2.Response
 
 interface BaseListener {
     fun onStarted()
-    fun onSuccess(weatherResponse: LiveData<String>)
+    fun onSuccess(weatherResponse: Response<DataResponse>?)
     fun onFailure(message: String)
 }
