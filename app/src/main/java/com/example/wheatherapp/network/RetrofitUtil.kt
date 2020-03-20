@@ -9,23 +9,21 @@ class RetrofitUtil {
     object RetrofitClient {
 
         private const val BASE_URL = "http://api.openweathermap.org/data/2.5/"
-        private var retrofit: Retrofit? = null
+        private lateinit var retrofit: Retrofit
 
-        fun getClient(): Retrofit? {
+        fun getClient(): Retrofit {
+            
+            retrofit = Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(BASE_URL).build()
 
-            if (retrofit == null) {
-
-                retrofit = Retrofit.Builder()
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(BASE_URL).build()
-            }
             return retrofit
         }
     }
 
     object GetApiService {
-        fun getApiService(): ApiInterface? =
-            RetrofitClient.getClient()!!.create(ApiInterface::class.java)
+        fun getApiService(): ApiInterface =
+            RetrofitClient.getClient().create(ApiInterface::class.java)
     }
 }

@@ -5,6 +5,6 @@ import retrofit2.Response
 
 interface BaseListener {
     fun onStarted()
-    fun onSuccess(weatherResponse: Response<DataResponse>?)
+    fun onSuccess(dataResponse: DataResponse)
     fun onFailure(message: String)
 }

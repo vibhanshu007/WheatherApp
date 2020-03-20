@@ -8,10 +8,7 @@ import com.example.wheatherapp.R
 import com.example.wheatherapp.base.BaseListener
 import com.example.wheatherapp.databinding.ActivitySplashBinding
 import com.example.wheatherapp.model.DataResponse
-import com.example.wheatherapp.utils.hide
-import com.example.wheatherapp.utils.log
-import com.example.wheatherapp.utils.show
-import com.example.wheatherapp.utils.toast
+import com.example.wheatherapp.utils.*
 import com.example.wheatherapp.viewmodel.WeatherViewModel
 import kotlinx.android.synthetic.main.activity_splash.*
 import retrofit2.Response
@@ -35,18 +32,19 @@ class SplashActivity : AppCompatActivity(), BaseListener {
 
     override fun onStarted() {
         progressBar.show()
-        log(tag, "started")
+        log(tag, "onStarted")
     }
 
     override fun onFailure(message: String) {
         progressBar.hide()
-        toast(message)
+        root_layout.snackbar("onFailure")
         log(tag, message)
     }
 
-    override fun onSuccess(weatherResponse: Response<DataResponse>?) {
-        toast(weatherResponse?.message())
-        log(tag, "success")
+    override fun onSuccess(dataResponse: DataResponse) {
+        root_layout.snackbar("Success")
+        log(tag, "onSuccess")
+        progressBar.hide()
     }
 
 }
